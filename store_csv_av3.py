@@ -15,3 +15,5 @@ tabelaFiltrado = tabelaFiltrado.rename(columns={
     'Store_Sales' : 'Vendas (dólar)'
 })
 print(tabelaFiltrado)
+
+#amanha retomada
