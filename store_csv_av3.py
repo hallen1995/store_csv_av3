@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 tabela = pd.read_csv("C:/Users/usuario/Desktop/store_csv_av3/Stores.csv", sep=',')
 # print(tabela)
@@ -11,40 +12,111 @@ tabelaFiltrado = tabelaFiltrado.rename(columns={
     'Store_Area' : 'Itens',
     'Items_Available' : 'Estoque',
     'Daily_Customer_Count' : 'Visitantes',
-    'Store_Sales' : 'Vendas (dólar)'
+    'Store_Sales' : 'Vendas'
 })
-print(13*" " + "Planilha de Controle de Fluxo")
+tabelaFiltrado.sort_values('Estoque')
+
+print(9*" " + "Planilha de Controle de Fluxo")
 print(tabelaFiltrado)
 
 
 #Calculando o valor Máximo, Mínimo, Médio e Desvio padrão  
 print('\n Calculando o valor máximo, mínimo, médio e desvio padrão:')
-
 print('\n- Controle dos valores da coluna Estoque:')
 dadosDisp = tabelaFiltrado['Estoque']
-print("Valor máximo:", dadosDisp.values.max())
-print("Valor mínimo:", dadosDisp.values.min())
-print("Valor médio:", dadosDisp.values.mean())
-print("Valor do desvio padrão:", dadosDisp.values.std())
-print(50*"-")
 
+maxEstoque = dadosDisp.values.max()
+print('Valor máximo:', maxEstoque)
+
+minEstoque = dadosDisp.values.min()
+print('Valor mínimo:', minEstoque)
+
+meanEstoque = dadosDisp.values.mean()
+print('Valor média:', meanEstoque)
+
+stdEstoque = dadosDisp.values.std()
+print('Valor desvio padrão:', stdEstoque)
+print(50*"-")
+# --------------------------------------------------
 print('\n- Controle dos valores da coluna Visitantes:')
 dadosDisp = tabelaFiltrado['Visitantes']
-print("Valor máximo:", dadosDisp.values.max())
-print("Valor mínimo:", dadosDisp.values.min())
-print("Valor médio:", dadosDisp.values.mean())
-print("Valor do desvio padrão:", dadosDisp.values.std())
-print(50*"-")
+maxVisitas = dadosDisp.values.max()
+print('Valor máximo:', maxVisitas)
 
+minVisitas = dadosDisp.values.min()
+print('Valor mínimo:', minVisitas)
+
+meanVisitas = dadosDisp.values.mean()
+print('Valor média:', meanVisitas)
+
+stdVisitas = dadosDisp.values.std()
+print('Valor desvio padrão:', stdVisitas)
+print(50*"-")
+# --------------------------------------------------
 print('\n- Controle dos valores da coluna Vendas (dólar):')
-dadosDisp = tabelaFiltrado['Vendas (dólar)']
-print("Valor máximo:", dadosDisp.values.max())
-print("Valor mínimo:", dadosDisp.values.min())
-print("Valor médio:", dadosDisp.values.mean())
-print("Valor do desvio padrão:", dadosDisp.values.std())
+dadosDisp = tabelaFiltrado['Vendas']
+maxVendas = dadosDisp.values.max()
+print('Valor máximo:', maxVendas)
+
+minVendas = dadosDisp.values.min()
+print('Valor mínimo:', minVendas)
+
+meanVendas = dadosDisp.values.mean()
+print('Valor média:', meanVendas)
+
+stdVendas = dadosDisp.values.std()
+print('Valor desvio padrão:', stdVendas)
 print(50*"-")
 
-################################################################
+# --------------------------------------------------
+import matplotlib.pyplot as plt
 
+fig, ax = plt.subplots()
 
+dadosEstoque = ['Máximo', 'Mínimo', 'Média', 'Desvio']
+counts = (maxEstoque, minEstoque, meanEstoque, stdEstoque)
+
+bar_labels = ['Max', 'Min', 'Med', 'Desv']
+bar_colors = ['tab:red', 'tab:blue', 'tab:green', 'tab:orange']
+
+ax.bar(dadosEstoque, counts, label=bar_labels, color=bar_colors)
+ax.set_ylabel('Valor Alcançado')
+ax.set_title('Controle do Estoque em: \n Qtd. Máxima, Qtd. Mínima, Média e Desvio Padrão')
+ax.legend(title='Dados')
+
+plt.show()
+
+# --------------------------------------------------
+
+fig, ax = plt.subplots()
+
+dadosVisitas = ['Máximo', 'Mínimo', 'Média', 'Desvio']
+counts = (maxVisitas, minVisitas, meanVisitas, stdVisitas)
+
+bar_labels = ['Max', 'Min', 'Med', 'Desv']
+bar_colors = ['tab:red', 'tab:blue', 'tab:green', 'tab:orange']
+
+ax.bar(dadosVisitas, counts, label=bar_labels, color=bar_colors)
+ax.set_ylabel('Valor Alcançado')
+ax.set_title('Controle de Visitas em: \n Qtd. Máxima, Qtd. Mínima, Média e Desvio Padrão')
+ax.legend(title='Dados')
+
+plt.show()
+
+# ------------------------------------------------------------------
+
+fig, ax = plt.subplots()
+
+dadosVendas = ['Máximo', 'Mínimo', 'Média', 'Desvio']
+counts = (maxVendas, minVendas, meanVendas, stdVendas)
+
+bar_labels = ['Max', 'Min', 'Med', 'Desv']
+bar_colors = ['tab:red', 'tab:blue', 'tab:green', 'tab:orange']
+
+ax.bar(dadosVendas, counts, label=bar_labels, color=bar_colors)
+ax.set_ylabel('Valor Alcançado')
+ax.set_title('Controle de Vendas (dólar) em: \n Qtd. Máxima, Qtd. Mínima, Média e Desvio Padrão')
+ax.legend(title='Dados')
+
+plt.show()
 
